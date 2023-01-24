@@ -1,52 +1,77 @@
-# Prerequisites
-*.d
+#include <stdio.h>
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+void insertionSort_1(int arr[], int n)
+{
+	for (int i = 1; i < n; i++)
+	{
+		int j = i;
+		while (j > 0 && arr[j] <= arr[j - 1])
+		{
+			int temp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1]= temp;
+			j--;
+		}
+	}
+}
 
-# Linker output
-*.ilk
-*.map
-*.exp
+void insertionSort_2(int arr[], int n){
+	for (int i=1; i<n; i++){
+		int key= arr[i];
+		int j= i-1;
+		while (j>= 0 && arr[j]> key){
+			arr[j+1] = arr[j];
+			j--;
+		}
+		arr[j+1]= key;
+	}
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+void selectionSort(int arr[], int n){
+	for (int i=0; i<n-1; i++){
+		int i_min = i;
+		int v_min = arr[i];
+		for (int j=i; j<n; j++){
+			if (arr[j] < v_min){
+				v_min = arr[j];
+				i_min = j;
+			}
+		}
+		int temp = arr[i];
+		arr[i] = v_min;
+		arr[i_min] = temp;
+	}
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+void binarySearch(int arr[], int findValue, int n)
+{
+	int left = 0, right = n - 1;
+	while (true){
+		int mid = (left + right)/2;
+		if (arr[mid] == findValue){
+			return mid;
+		}else if (arr[mid]>findValue){
+			right = mid;
+		}else {
+			left = mid;
+		}
+		}
+	}
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+void printValue(int arr[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("arr[%d]= %d\n", i, arr[i]);
+	}
+	printf("-------------\n");
+}
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+int main(){
+	int arr[]={9,7,8,5,3,6,-23,67,-1,0,2,1,67,34};
+	int n= sizeof(arr)/sizeof(int);
+	printValue(arr, n);
+	
+	insertionSort_1(arr,n);
+	printValue(arr,n);
+}
