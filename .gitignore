@@ -57,7 +57,8 @@ void binarySearch_1(int arr[], int findValue, int n)
 		}
 		}
 	}
-
+        return false;
+}
 //Using recursion
 int binarySearch_2(int arr[], int findValue, int left, int right){
 	if (left==right){
@@ -65,7 +66,7 @@ int binarySearch_2(int arr[], int findValue, int left, int right){
 		if (arr[left]== findValue){
 			return left;
 		}else {
-			return -1;
+			return false;
 		}
 		
 	}else{
