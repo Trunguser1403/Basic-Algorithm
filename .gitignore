@@ -46,14 +46,14 @@ void selectionSort(int arr[], int n){
 void binarySearch_1(int arr[], int findValue, int n)
 {
 	int left = 0, right = n - 1;
-	while (true){
+	while (left < right){
 		int mid = (left + right)/2;
 		if (arr[mid] == findValue){
 			return mid;
 		}else if (arr[mid]>findValue){
-			right = mid;
+			right = mid-1;
 		}else {
-			left = mid;
+			left = mid+1;
 		}
 		}
 	}
@@ -74,9 +74,9 @@ int binarySearch_2(int arr[], int findValue, int left, int right){
 			return mid;
 		}else {
 			if (arr[mid]> findValue){
-				return binarySearch_2(arr, findValue, left, right = mid);
+				return binarySearch_2(arr, findValue, left, right = mid+1);
 			}else{
-				return binarySearch_2(arr, findValue, left = mid, right);
+				return binarySearch_2(arr, findValue, left = mid+1, right);
 			}
 		}
 		
